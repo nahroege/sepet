@@ -12,7 +12,14 @@ Author URI: egeorhan.com
 Domain Path: /i18n/languages/
 */
 
-
+?>
+<?php
+add_action('admin_menu', 'yonetime_ekle');
+function yonetime_ekle() {
+    add_submenu_page('options-general.php', 'Günün İpucu', 'Günün İpucu', 10, __FILE__, 'ipucu_menu');
+}
+?>
+<?php
 header('content-type: text/html; charset=utf8');
 ob_start();
 
