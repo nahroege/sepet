@@ -16,9 +16,17 @@ Domain Path: /i18n/languages/
 <?php
 add_action('admin_menu', 'yonetime_ekle');
 function yonetime_ekle() {
-    add_submenu_page('options-general.php', 'Günün İpucu', 'Günün İpucu', 10, __FILE__, 'ipucu_menu');
+    add_submenu_page('options-general.php', 'Sepet', 'Sepet', 10, __FILE__, 'sepet_menü');
 }
 ?>
+<?php
+global $wpdb;
+$spt=$wpdb ->get_result(
+	"SELECT ID,urunler FROM $wpdb-> urunler where post_status='draft'
+
+
+); 
+  ?>
 <?php
 header('content-type: text/html; charset=utf8');
 ob_start();
