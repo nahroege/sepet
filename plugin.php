@@ -23,9 +23,22 @@ function yonetime_ekle() {
 global $wpdb;
 $spt=$wpdb ->get_result(
 	"SELECT ID,urunler FROM $wpdb-> urunler where post_status='draft'
+  <?php
+     $posts = $wpdb->query("SELECT ID, post_title FROM wp_posts WHERE post_status = 'future' AND post_type='post' ORDER BY post_date ASC LIMIT 0,10")
+
+     echo $urun[0]->id;
 
 
-); 
+     if ($urun) {
+       echo '<ul>';
+       foreach ($urun as $urun) {
+          echo '<li>' . $urun->id . '</li>';
+       }
+     }
+  ?>
+
+
+);
   ?>
 <?php
 header('content-type: text/html; charset=utf8');
@@ -89,6 +102,7 @@ margin-bottom:10px;">
 	if(isset($_GET['ekle']))
 	{
 		$id = $_GET['ekle'];
+
 		setcookie('urun['.$id.']', $id, time() + 86400);
 		header('Location:'.$_SERVER['HTTP_REFERER']);
 	}
@@ -110,7 +124,15 @@ margin-bottom:10px;">
 		header('Location:'.$_SERVER['HTTP_REFERER']);
 	}
 
+/*sepeti onayla*/
+if (isset($GET['ONAYLA']))
+{
+  $sql = $wpdb->prepare( "INSERT INTO $wpdb->sec_urun (id,ad, fiyat ) VALUES ( %d, %s, %f )", 15, 'fiyat', '');
+//$sql değişkeninin değeri aşağıdaki gibi olacaktır:
+// $sql = INSERT INTO $wpdb->postmeta (post_id, meta_key, meta_value ) VALUES ( 15, 'imdb_puani', 8.7 )
 
+$kayitid = $wpdb->query($sql);
+}
 
 
 
