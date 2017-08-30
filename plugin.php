@@ -21,8 +21,24 @@ function yonetime_ekle() {
 ?>
 <?php
 global $wpdb;
+$charset_collate = $wpdb->get_charset_collate();
+sql="CREATE TABLE `urun` (
+  `ad` int(25) NOT NULL,
+  `aciklama` int(250) DEFAULT NULL,
+  `id` smallint(25) NOT NULL,
+  `Fiyat` varchar(10) NOT NULL,
+  `Resim` varchar(250) NOT NULL,
+  `Stok` varchar(100) NOT NULL,
+  `Yorum` text,
+  `uye_id` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1";
+) $charset_collate;";
+
+require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+dbDelta( $sql );
+
 $spt=$wpdb ->get_result(
-	"SELECT ID,urunler FROM $wpdb-> urunler where post_status='draft'
+	"SELECT ID,urunler FROM $wpdb-> urunler where post_status='draft'"
   <?php
      $posts = $wpdb->query("SELECT ID, post_title FROM wp_posts WHERE post_status = 'future' AND post_type='post' ORDER BY post_date ASC LIMIT 0,10")
 
@@ -40,63 +56,6 @@ $spt=$wpdb ->get_result(
 
 );
   ?>
-<?php
-<div class="wrap">
-    function sepet_menu() {
-        global $wpdb;
-
-        if ($_POST['islem']== 'onayla') { sepet_onay (); }
-        if ($_GET['islem']== 'sil') { sepet_sil (); }
-        if ($_POST['islem']== 'yolacikar') { yolacikar (); }
-        $sorgu = "SELECT * FROM $wpdb->urun order by id desc";
-        $sonuclar = $wpdb->get_results($sorgu);
-         if ($sonuclar) {
-            echo "<strong>Sipariş Listesi:</strong>";
-            echo "<ol>";
-            foreach ($sonuclar as $sonuc) {
-                $metin=stripslashes($sonuc->ipucumetin);
-        echo "<li>".$metin;
-        echo "-[<a href='".$_SERVER&#91;'PHP_SELF']
-          ."?page=gunun_ipucu.php&islem=sil&silno=".$sonuc->id."'>Sil</a>]";
-        echo "-[<a href='".$_SERVER&#91;'PHP_SELF']
-          ."?page=gunun_ipucu.php&degistir=".$sonuc->id."'>Düzenle</a>]</li>";
-            }
-            echo "</ol>";
-        } else { echo "Sipariş bulunmuyor!"; }
-        </div>
-    // Eğer düzenleme işlemi yapılmak istenmemişse boş bir metin kutusu oluşturuyoruz.
-        if (!isset($_GET['degistir'])) {
-    ?>
-        <form action="<?php $_SERVER['PHP_SELF'] ?>?page=gunun_ipucu.php" method="post" >
-           <fieldset>
-         <table width="400">
-             <tr><td><input type="submit" name="submit" value="<?php
-           /* Eğer gunun_ipucu_yazida isimli seçeneğin durumuna göre seçenek
-               düğmemize isim veriyoruz*/
-              if (get_option('urun_fiyat') == 'hayir') {echo "uygun ürünler";
-    }else{ echo "uygun ürün gösterme";} ?>" class="button" /></td></tr>
-         </table>
-              <INPUT TYPE="hidden" name="islem" value="yazidagoster"></p>
-           </fieldset>
-         </form>
-
-    <form action="<?php $_SERVER['PHP_SELF'] ?>?page=gunun_ipucu.php" method="post" >
-            <fieldset>
-            <table width="400">
-                <tr><td width="400"><b>Yeni İpucu</b></td></tr>
-                <tr><td><textarea name="metin" id="metin" cols="45" rows="6" tabindex="4"></textarea></td></tr>
-                <tr><td><input type="submit" name="submit" value="İpucunu Ekle" class="button" tabindex="5" /></td></tr>
-            </table>
-                <INPUT TYPE="hidden" name="islem" value="ekle"></p>
-            </fieldset>
-        </form>
-
-    <?php
-
-    } } }
-            echo "</div>";
-    } // Fonksiyonun sonu
-
 
 ?>
 <?php
