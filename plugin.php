@@ -1,11 +1,19 @@
 <?php
 /*
 Plugin Name: Sepet
+<<<<<<< HEAD
 Plugin URI: github.com/nahroege/sepet
 Description: Bir e-ticaret sepet eklentisidir.Bu eklenti sayesinde wordpress
 aracılığla ticaret sitesine dönüşübilecek
 Author: Ege ORHAN
 Version: 0.2
+=======
+Plugin URI: #
+Description: Bir e-ticaret sepet eklentisidir.Bu eklenti sayesinde wordpress
+aracılığla ticaret sitesine dönüşübilecek
+Author: Ege ORHAN
+Version: 0.1
+>>>>>>> 917d12e5f62158dd462c3963fdcaed16feb2e2c1
 Author URI: egeorhan.com
 
 
@@ -18,9 +26,19 @@ add_action('admin_menu', 'yonetime_ekle');
 function yonetime_ekle() {
     add_submenu_page('options-general.php', 'Sepet', 'Sepet', 10, __FILE__, 'sepet_menü');
 }
+<<<<<<< HEAD
 
 ?>
 
+=======
+?>
+<?php
+function jal_install () {
+   global $wpdb;
+   $table_name === $wpdb->prefix . "liveshoutbox";
+}
+?>
+>>>>>>> 917d12e5f62158dd462c3963fdcaed16feb2e2c1
 <?php
 global $wpdb;
 $charset_collate = $wpdb->get_charset_collate();
@@ -39,7 +57,11 @@ $sql="CREATE TABLE `urun` (
 require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 dbDelta( $sql );
 
+<<<<<<< HEAD
  $urunler = $wpdb->query("SELECT ad,aciklama,id FROM urun") ;
+=======
+ $urunler = $wpdb->query("SELECT ad,aciklama,id FROM urun WHERE ;
+>>>>>>> 917d12e5f62158dd462c3963fdcaed16feb2e2c1
 
      echo $urun[0]->id;
 
@@ -51,15 +73,32 @@ dbDelta( $sql );
        }
      }
   ?>
+<<<<<<< HEAD
 <?php
 header('content-type: text/html; charset=utf8');
 ob_start();
 
+=======
+
+
+);
+  ?>
+
+?>
+<?php
+header('content-type: text/html; charset=utf8');
+ob_start();
+$urunler(sepet);
+>>>>>>> 917d12e5f62158dd462c3963fdcaed16feb2e2c1
 
 	/* Sepetimi Göster */
 	if(isset($_GET['sepet']))
 	{
+<<<<<<< HEAD
 		echo "<h2>Sepetim (".count($_COOKIE['urun']).")</h2>";
+=======
+		echo '<h2>Sepetim ('.count($_COOKIE['urun']).')</h2>';
+>>>>>>> 917d12e5f62158dd462c3963fdcaed16feb2e2c1
 			if(isset($_COOKIE['urun']))
 			{
 				foreach($_COOKIE['urun'] as $urun => $val)
@@ -139,7 +178,10 @@ if (isset($GET['ONAYLA']))
   $sql = $wpdb->prepare( "INSERT INTO $wpdb->sec_urun (id,ad, fiyat ) VALUES ( %d, %s, %f )", 15, 'fiyat', '');
 $kayitid = $wpdb->query($sql);
 }
+<<<<<<< HEAD
 ?>
+=======
+>>>>>>> 917d12e5f62158dd462c3963fdcaed16feb2e2c1
 <?php
 	include(error_reporting(0));
 

@@ -15,7 +15,11 @@ Domain Path: /i18n/languages/
 ?>
 
 <?php
+<<<<<<< HEAD
 <div class="wrap"
+=======
+<div class="wrap">
+>>>>>>> 917d12e5f62158dd462c3963fdcaed16feb2e2c1
     function sepet_menu() {
         global $wpdb;
 
