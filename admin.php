@@ -1,4 +1,20 @@
 <?php
+/*
+Plugin Name: Sepet
+Plugin URI: github.com/nahroege/sepet
+Description: Bir e-ticaret sepet eklentisidir.Bu eklenti sayesinde wordpress
+aracılığla ticaret sitesine dönüşübilecek
+Author: Ege ORHAN
+Version: 0.2
+Author URI: egeorhan.com
+
+
+Domain Path: /i18n/languages/
+*/
+
+?>
+
+<?php
 <div class="wrap">
     function sepet_menu() {
         global $wpdb;
@@ -15,16 +31,16 @@
                 $metin=stripslashes($sonuc->ipucumetin);
         echo "<li>".$metin;
         echo "-[<a href='".$_SERVER&#91;'PHP_SELF']
-          ."?page=gunun_ipucu.php&islem=sil&silno=".$sonuc->id."'>Sil</a>]";
+          ."?page=plugin.php&islem=sil&silno=".$sonuc->id."'>Sil</a>]";
         echo "-[<a href='".$_SERVER&#91;'PHP_SELF']
-          ."?page=gunun_ipucu.php&degistir=".$sonuc->id."'>Düzenle</a>]</li>";
+          ."?page=plugin.php&degistir=".$sonuc->id."'>Düzenle</a>]</li>";
             }
             echo "</ol>";
         } else { echo "Sipariş bulunmuyor!"; }
         </div>
         if (!isset($_GET['degistir'])) {
     ?>
-        <form action="<?php $_SERVER['PHP_SELF'] ?>?page=gunun_ipucu.php" method="post" >
+        <form action="<?php $_SERVER['PHP_SELF'] ?>?plugin.php" method="post" >
            <fieldset>
          <table width="400">
              <tr><td><input type="submit" name="submit" value="<?php
