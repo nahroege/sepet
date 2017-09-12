@@ -20,9 +20,15 @@ function yonetime_ekle() {
 }
 ?>
 <?php
+function jal_install () {
+   global $wpdb;
+   $table_name === $wpdb->prefix . "liveshoutbox";
+}
+?>
+<?php
 global $wpdb;
 $charset_collate = $wpdb->get_charset_collate();
-sql="CREATE TABLE `urun` (
+$sql="CREATE TABLE `urun` (
   `ad` int(25) NOT NULL,
   `aciklama` int(250) DEFAULT NULL,
   `id` smallint(25) NOT NULL,
@@ -32,15 +38,12 @@ sql="CREATE TABLE `urun` (
   `Yorum` text,
   `uye_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1";
-) $charset_collate;";
+
 
 require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 dbDelta( $sql );
 
-$spt=$wpdb ->get_result(
-	"SELECT ID,urunler FROM $wpdb-> urunler where post_status='draft'"
-  <?php
-     $posts = $wpdb->query("SELECT ID, post_title FROM wp_posts WHERE post_status = 'future' AND post_type='post' ORDER BY post_date ASC LIMIT 0,10")
+ $urunler = $wpdb->query("SELECT ad,aciklama,id FROM urun WHERE ;
 
      echo $urun[0]->id;
 
@@ -61,12 +64,10 @@ $spt=$wpdb ->get_result(
 <?php
 header('content-type: text/html; charset=utf8');
 ob_start();
-
-	/* Ürünlerim */
-	$urunler = array(1,2,3,4,5);
+$urunler(sepet);
 
 	/* Sepetimi Göster */
-	if(isset($_GET['sepetim']))
+	if(isset($_GET['sepet']))
 	{
 		echo '<h2>Sepetim ('.count($_COOKIE['urun']).')</h2>';
 			if(isset($_COOKIE['urun']))
@@ -77,7 +78,7 @@ ob_start();
 						<div style="border:1px solid #ddd;padding:10px;
 margin-bottom:10px;">
 						<h2>Ürün ' . $urun . ' </h2>
-						<p>SELECT * FROM urun</p>
+						<p>"SELECT * FROM urun"</p>
 						<a href="?cikart='.$urun.'">[Sepetten Çıkart]</a>
 					</div>';
 				}
@@ -146,9 +147,6 @@ margin-bottom:10px;">
 if (isset($GET['ONAYLA']))
 {
   $sql = $wpdb->prepare( "INSERT INTO $wpdb->sec_urun (id,ad, fiyat ) VALUES ( %d, %s, %f )", 15, 'fiyat', '');
-//$sql değişkeninin değeri aşağıdaki gibi olacaktır:
-// $sql = INSERT INTO $wpdb->postmeta (post_id, meta_key, meta_value ) VALUES ( 15, 'imdb_puani', 8.7 )
-
 $kayitid = $wpdb->query($sql);
 }
 <?php
